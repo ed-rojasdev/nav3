@@ -9,19 +9,19 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: PantallaPerfil());
+    return MaterialApp(home: PantallaPerfl());
   }
 }
 
-class PantallaPerfil extends StatefulWidget {
-  const PantallaPerfil({super.key});
+class PantallaPerfl extends StatefulWidget {
+  const PantallaPerfl({super.key});
 
   @override
-  State<PantallaPerfil> createState() => _PantallaPerfilState();
+  State<PantallaPerfl> createState() => _PantallaPerflState();
 }
 
-class _PantallaPerfilState extends State<PantallaPerfil> {
-  String colorElegido = 'ninguno';
+class _PantallaPerflState extends State<PantallaPerfl> {
+  String estado = 'ninguno';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,20 +31,24 @@ class _PantallaPerfilState extends State<PantallaPerfil> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Color elegido: $colorElegido',
-              style: TextStyle(fontSize: 17, color: Colors.teal),
+              'COLOR ELEGIDO: $estado',
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.teal,
+                fontWeight: FontWeight(400),
+              ),
             ),
             ElevatedButton(
               onPressed: () async {
                 String res = await Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => PantallaSeleccion()),
+                  MaterialPageRoute(builder: (context) => PantallaColor()),
                 );
                 setState(() {
-                  colorElegido = res;
+                  estado = res;
                 });
               },
-              child: Text('Seleccionar color'),
+              child: Text('seleccionar color'.toUpperCase()),
             ),
           ],
         ),
@@ -53,28 +57,28 @@ class _PantallaPerfilState extends State<PantallaPerfil> {
   }
 }
 
-class PantallaSeleccion extends StatelessWidget {
-  const PantallaSeleccion({super.key});
+class PantallaColor extends StatelessWidget {
+  const PantallaColor({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('SELECCION')),
+      appBar: AppBar(title: Text('color'.toUpperCase())),
       body: Center(
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context, 'azul');
-              },
-              child: Text('AZUL'),
-            ),
             ElevatedButton(
               onPressed: () {
                 Navigator.pop(context, 'rojo');
               },
-              child: Text('ROJO'),
+              child: Text('rojo'.toUpperCase()),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context, ' azul');
+              },
+              child: Text('Azul'.toUpperCase()),
             ),
           ],
         ),
